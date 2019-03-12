@@ -1,7 +1,7 @@
 # docker-php72-apache-stretch
-Docker image with Apache and PHP 7.2 on Debian Stretch
+Docker image with Apache PHP 7.2 / mod_pagespeed / composer / ioncube on Debian Stretch
 
-## Needed .env Variables
+## ENV variables
 `ServerAdmin ${PS_APACHE_SERVERADMIN}`
 
 `DocumentRoot ${PS_APACHE_DOCROOT}`
@@ -9,3 +9,7 @@ Docker image with Apache and PHP 7.2 on Debian Stretch
 `ErrorLog ${APACHE_LOG_DIR}/error.log`
 
 `CustomLog ${APACHE_LOG_DIR}/access.log combined`
+
+## Notice
+
+mod_pagespeed is globally off, enable in vhost or htaccess.
