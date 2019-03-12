@@ -24,10 +24,8 @@ RUN docker-php-ext-configure gd --with-jpeg-dir=/usr/local/ && \
   docker-php-ext-install -j$(nproc) curl json xml mbstring zip bcmath soap pdo_mysql mysqli gd gettext imap
 
 # composer stuff
-RUN php -r 'readfile("https://getcomposer.org/installer");' > composer-setup.php \
-  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-  && rm -f composer-setup.php \
-  && chown www-data:www-data /var/www
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN chown www-data:www-data /var/www
 
 # apache stuff
 RUN /usr/sbin/a2enmod rewrite && /usr/sbin/a2enmod headers && /usr/sbin/a2enmod expires
